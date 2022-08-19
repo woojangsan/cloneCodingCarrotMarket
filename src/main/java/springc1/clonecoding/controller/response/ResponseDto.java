@@ -2,6 +2,7 @@ package springc1.clonecoding.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import springc1.clonecoding.domain.Product;
 
 @Getter
 @AllArgsConstructor
@@ -9,6 +10,10 @@ public class ResponseDto<T> {
     private boolean success;
     private T data;
     private Error error;
+
+    public ResponseDto(Product savedProduct) {
+    }
+
 
     public static <T> ResponseDto<T> success(T data) {
         return new ResponseDto<>(true, data, null);

@@ -1,6 +1,7 @@
 package springc1.clonecoding.domain;
 
 import lombok.*;
+import springc1.clonecoding.controller.request.ProductRequest;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,4 +38,6 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<ImgProduct> imgProductList;
 
+    public Product(ProductRequest request) {
+    }
 }
