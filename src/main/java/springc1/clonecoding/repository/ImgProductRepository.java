@@ -6,9 +6,7 @@ import springc1.clonecoding.domain.Product;
 
 import java.util.List;
 
+public interface ImgProductRepository extends JpaRepository<ImgProduct, Long> {
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
-
-    List<Product> findAllByLocation(String location);
-
+    List<ImgProduct> findAllByProduct(Product product);
 }

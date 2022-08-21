@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import springc1.clonecoding.controller.request.SignupRequestDto;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -33,6 +34,8 @@ public class Member extends Timestamped {
     @JsonIgnore
     private String password;
 
+    @Column
+    private String location;
 
     @Override
     public boolean equals(Object o) {
@@ -50,5 +53,11 @@ public class Member extends Timestamped {
         return passwordEncoder.matches(password, this.password);
     }
 
+    public Member(SignupRequestDto requestDto, String password) {
+        this.username = requestDto.getUsername();
+        this.nickname = requestDto.getNickname();
+        this.location = requestDto.getLocation();
+        this.password = password;
+    }
 
 }

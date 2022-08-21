@@ -21,4 +21,14 @@ public class ImgProduct {
     @JoinColumn(name = "product_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
+
+
+    public ImgProduct(Product product, String imgUrl) {
+        this.imgUrl = imgUrl;
+        this.product = product;
+    }
+
+    public void update(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import springc1.clonecoding.domain.Product;
 
+import java.util.Optional;
+
 @Getter
 @AllArgsConstructor
 public class ResponseDto<T> {
@@ -11,8 +13,6 @@ public class ResponseDto<T> {
     private T data;
     private Error error;
 
-    public ResponseDto(Product savedProduct) {
-    }
 
 
     public static <T> ResponseDto<T> success(T data) {
