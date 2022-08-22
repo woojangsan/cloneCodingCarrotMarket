@@ -61,11 +61,4 @@ public class Product {
         this.content = request.getContent();
         this.location = request.getLocation();
     }
-
-    public void update(boolean add) {
-    }
-
-    public void update(ImgProduct imgProduct) {
-        this.imgProductList = imgProduct.getProduct().getImgProductList();
-    }
 }

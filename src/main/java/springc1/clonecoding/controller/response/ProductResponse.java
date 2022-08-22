@@ -29,7 +29,7 @@ public class ProductResponse {
 
 
     public ProductResponse(Product save) {
-        this.id = save.getId();
+        this.id = save.getProduct_id();
         this.nickname = save.getNickname();
         this.content = save.getContent();
         this.price = save.getPrice();

@@ -25,18 +25,19 @@ public class ProductServiceImpl {
 
     //상품 등록
     public ResponseDto<?> createProduct(ProductRequest request, UserDetailsImpl userDetails) {
-        Member member = userDetails.getMember();
         //멤버 정보 가져오기
-        Product product = new Product(request, member);
+        Member member = userDetails.getMember();
         //상품 생성하기
-        productRepository.save(product);
+        Product product = new Product(request, member);
         //상품 저장하기
+        productRepository.save(product);
+        //이미지 가져와서 저장하기
         List<String> imgProductList = request.getImgProductList();
         for (String imgUrl : imgProductList){
             ImgProduct imgProduct = new ImgProduct(product, imgUrl);
             imgProductRepository.save(imgProduct);
         }
-        //이미지 가져와서 저장하기
+
 
         return ResponseDto.success("success");
     }
@@ -45,29 +46,25 @@ public class ProductServiceImpl {
     //상품 업데이트
     @Transactional
     public ResponseDto<?> updateProduct(ProductRequest request, UserDetailsImpl userDetails, Long productId) {
+
         Product product = productRepository.findById(productId).orElseThrow();
         //id로 상품 찾아오기
         List<ImgProduct> imgProductList = imgProductRepository.findAllByProduct(product);
-        //imgProductList로 이미지 찾아오기
         Member member = userDetails.getMember();
         //member 정보
         productMemeber(product, member);
         //상품 등록자 일치 여부
         product.update(request);
         //상품 업데이트
-        //상품 저장
-        System.out.println("ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ");
-        for(ImgProduct imgProduct : imgProductList){
-            System.out.println("ㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ");
-            imgProduct.setImgUrl(imgProduct.getImgUrl());
-            System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
-            product.update(imgProduct);
-            System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-            imgProductRepository.save(new ImgProduct(imgProduct));
-            System.out.println("ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ");
-        }
         productRepository.save(product);
-        System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
+        //상품 저장
+        imgProductRepository.deleteAll(imgProductList);
+        List<String> imgProducts = request.getImgProductList();
+        for (String imgUrl : imgProducts){
+            ImgProduct imgProduct = new ImgProduct(product, imgUrl);
+            imgProductRepository.save(imgProduct);
+        }
+
         //이미지 수정 후 저장
             return ResponseDto.success("success");
     }
@@ -88,18 +85,14 @@ public class ProductServiceImpl {
     @Transactional
     public ResponseDto<?> getLocalProduct(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow();
-        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+
 
         List<ImgProduct> imgProductList = imgProductRepository.findAllByProduct(product);
-        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+
         List<ImgProduct> imgProductList1 = new ArrayList<>();
         for (ImgProduct imgProduct : imgProductList){
-            ImgProduct imgProduct1 = new ImgProduct(imgProduct);
-            imgProductList1.add(imgProduct1);
+            imgProductList1.add(imgProduct);
         }
-        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-
-
         return ResponseDto.success(new AllProductsResponse(product, imgProductList1));
     }
 
