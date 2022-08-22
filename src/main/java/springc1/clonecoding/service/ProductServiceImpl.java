@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springc1.clonecoding.controller.request.ProductRequest;
-import springc1.clonecoding.controller.response.AllProductsResponse;
-import springc1.clonecoding.controller.response.ImgProductResponse;
-import springc1.clonecoding.controller.response.ProductResponse;
-import springc1.clonecoding.controller.response.ResponseDto;
+import springc1.clonecoding.controller.response.*;
 import springc1.clonecoding.domain.ImgProduct;
 import springc1.clonecoding.domain.Member;
 import springc1.clonecoding.domain.Product;
@@ -58,15 +55,23 @@ public class ProductServiceImpl {
         //상품 등록자 일치 여부
         product.update(request);
         //상품 업데이트
-        productRepository.save(product);
         //상품 저장
+        System.out.println("ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ");
         for(ImgProduct imgProduct : imgProductList){
-            imgProduct.update(imgProduct.getImgUrl());
-            imgProductRepository.save(imgProduct);
+            System.out.println("ㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ");
+            imgProduct.setImgUrl(imgProduct.getImgUrl());
+            System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+            product.update(imgProduct);
+            System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+            imgProductRepository.save(new ImgProduct(imgProduct));
+            System.out.println("ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ");
         }
+        productRepository.save(product);
+        System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
         //이미지 수정 후 저장
             return ResponseDto.success("success");
     }
+
 
     //상품 삭제
     public ResponseDto<?> deleteProduct(Long productId, UserDetailsImpl userDetails) {
@@ -83,14 +88,19 @@ public class ProductServiceImpl {
     @Transactional
     public ResponseDto<?> getLocalProduct(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow();
+        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
 
         List<ImgProduct> imgProductList = imgProductRepository.findAllByProduct(product);
-        List<ImgProduct> imgProducts = new ArrayList<>();
+        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+        List<ImgProduct> imgProductList1 = new ArrayList<>();
         for (ImgProduct imgProduct : imgProductList){
-            imgProducts.add(imgProduct);
+            ImgProduct imgProduct1 = new ImgProduct(imgProduct);
+            imgProductList1.add(imgProduct1);
         }
+        System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
 
-        return ResponseDto.success(new AllProductsResponse(product, imgProducts));
+
+        return ResponseDto.success(new AllProductsResponse(product, imgProductList1));
     }
 
 

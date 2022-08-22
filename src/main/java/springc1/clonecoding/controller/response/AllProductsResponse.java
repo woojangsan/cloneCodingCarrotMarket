@@ -31,12 +31,13 @@ public class AllProductsResponse {
     }
 
 
-    public AllProductsResponse(Product product, List<ImgProduct> imgProducts) {
+    public AllProductsResponse(Product product, List<ImgProduct> imgProductList1) {
         this.id = product.getId();
         this.nickname = product.getNickname();
         this.name = product.getName();
         this.price = product.getPrice();
         this.location = product.getLocation();
-        this.imgProductList = imgProducts;
+        this.imgProductList = imgProductList1;
+
     }
 }

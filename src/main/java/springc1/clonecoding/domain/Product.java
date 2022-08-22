@@ -54,16 +54,18 @@ public class Product {
         this.member = member;
     }
 
-    public Product(ImgProduct imgProduct) {
-        this.imgProductList = imgProduct.getProduct().getImgProductList();
-    }
-
 
     public void update(ProductRequest request) {
         this.name = request.getName();
         this.price = request.getPrice();
         this.content = request.getContent();
+        this.location = request.getLocation();
     }
 
+    public void update(boolean add) {
+    }
 
+    public void update(ImgProduct imgProduct) {
+        this.imgProductList = imgProduct.getProduct().getImgProductList();
+    }
 }
