@@ -1,5 +1,6 @@
 package springc1.clonecoding.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +19,8 @@ public class ImgPost {
     @Column(nullable = false)
     private String imgUrl;
 
+    @JsonIgnore
     @JoinColumn(name = "post_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Product post;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Post post;
 }
