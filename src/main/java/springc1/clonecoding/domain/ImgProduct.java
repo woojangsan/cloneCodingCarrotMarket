@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class ImgProduct {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
