@@ -102,6 +102,7 @@ public class SecurityConfiguration {
                 .antMatchers(HttpMethod.GET,"/api/post/id/**").permitAll()
                   // 전체상품 조회 , 상품 상세 조회 filter 통과
                 .antMatchers(HttpMethod.GET,"/api/product").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/product/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/product/id/**").permitAll()
                 .anyRequest().authenticated()
 

@@ -37,7 +37,6 @@ public class Member extends Timestamped {
     @Column(nullable = false)
     private String location;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -57,6 +56,7 @@ public class Member extends Timestamped {
     public Member(SignupRequestDto requestDto, String password) {
         this.username = requestDto.getUsername();
         this.nickname = requestDto.getNickname();
+        this.location = requestDto.getLocation();
         this.password = password;
         this.location = requestDto.getLocation();
     }
