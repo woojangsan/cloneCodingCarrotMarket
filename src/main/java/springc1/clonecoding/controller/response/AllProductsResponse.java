@@ -11,8 +11,6 @@ public class AllProductsResponse {
 
     private Long id;
 
-    private String nickname;
-
     private String name;
 
     private Long price;
@@ -23,7 +21,6 @@ public class AllProductsResponse {
 
     public AllProductsResponse(Product product) {
         this.id = product.getId();
-        this.nickname = product.getNickname();
         this.name = product.getName();
         this.price = product.getPrice();
         this.location = product.getMember().getLocation();
@@ -33,7 +30,6 @@ public class AllProductsResponse {
 
     public AllProductsResponse(Product product, List<ImgProduct> imgProductList1) {
         this.id = product.getId();
-        this.nickname = product.getNickname();
         this.name = product.getName();
         this.price = product.getPrice();
         this.location = product.getMember().getLocation();
