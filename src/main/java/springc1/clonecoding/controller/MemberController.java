@@ -12,6 +12,7 @@ import springc1.clonecoding.controller.response.ResponseDto;
 import springc1.clonecoding.service.MemberService;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,7 +22,7 @@ public class MemberController {
 
     //api 회원가입
     @PostMapping(value = "/user/signup")
-    public ResponseDto<?> signup(@RequestBody SignupRequestDto requestDto) {
+    public ResponseDto<?> signup(@RequestBody @Valid SignupRequestDto requestDto) {
         return memberService.createMember(requestDto);
     }
 
