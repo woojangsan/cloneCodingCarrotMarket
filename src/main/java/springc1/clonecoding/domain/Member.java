@@ -34,6 +34,9 @@ public class Member extends Timestamped {
     @JsonIgnore
     private String password;
 
+    @Column(nullable = false)
+    private String location;
+
 
     @Override
     public boolean equals(Object o) {
@@ -55,6 +58,7 @@ public class Member extends Timestamped {
         this.username = requestDto.getUsername();
         this.nickname = requestDto.getNickname();
         this.password = password;
+        this.location = requestDto.getLocation();
     }
 
 }
