@@ -18,12 +18,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
-
-
-    @Column(nullable = false)
-    private String nickname;
-
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -46,7 +41,6 @@ public class Product {
     private List<ImgProduct> imgProductList;
 
     public Product(ProductRequest request, Member member) {
-        this.nickname = member.getNickname();
         this.name = request.getName();
         this.price = request.getPrice();
         this.content = request.getContent();

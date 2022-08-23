@@ -23,7 +23,8 @@ public class MemberService {
     @Transactional
     public ResponseDto<?> createMember(SignupRequestDto requestDto) {
 
-        isPresentMember(requestDto.getUsername());
+        isPresentUserName(requestDto.getUsername());
+        isPresentNickName(requestDto.getUsername());
 
         String password = passwordEncoder.encode(requestDto.getPassword());
 
@@ -44,11 +45,9 @@ public class MemberService {
 
     @Transactional
     public ResponseDto<?> nickCheck(NickCheckRequestDto requestDto) {
-        memberRepository.findByUsername(requestDto.getNickname()).orElseThrow(() -> new IllegalArgumentException("중복된 아이디가 존재합니다."));
+        memberRepository.findByNickname(requestDto.getNickname()).orElseThrow(() -> new IllegalArgumentException("중복된 닉네임이 존재합니다."));
         return ResponseDto.success("success");
-
     }
-
 
     @Transactional
     public ResponseDto<?> login(LoginRequestDto requestDto, HttpServletResponse response) {
@@ -76,8 +75,16 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public Member isPresentMember(String username) {
-        return memberRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("중복된 아이디 입니다."));
+    public void isPresentUserName(String username) {
+        if(memberRepository.findByUsername(username).isPresent()){
+            throw new IllegalArgumentException("중복된 아이디가 존재합니다");
+        }
+    }
+    @Transactional(readOnly = true)
+    public void isPresentNickName(String nickname) {
+        if(memberRepository.findByNickname(nickname).isPresent()){
+            throw new IllegalArgumentException("중복된 닉네임이 존재합니다");
+        }
     }
 
 }
