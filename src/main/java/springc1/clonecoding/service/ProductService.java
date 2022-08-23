@@ -17,7 +17,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class ProductServiceImpl {
+public class ProductService {
 
     private final ProductRepository productRepository;
 
@@ -76,6 +76,8 @@ public class ProductServiceImpl {
         Member member = userDetails.getMember();
 
         productMemeber(product, member);
+
+        productRepository.delete(product);
 
         return ResponseDto.success("success");
     }

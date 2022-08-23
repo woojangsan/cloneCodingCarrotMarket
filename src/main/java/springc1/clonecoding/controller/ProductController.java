@@ -6,15 +6,14 @@ import org.springframework.web.bind.annotation.*;
 import springc1.clonecoding.controller.request.ProductRequest;
 import springc1.clonecoding.controller.response.ResponseDto;
 import springc1.clonecoding.domain.UserDetailsImpl;
-import springc1.clonecoding.service.ProductServiceImpl;
+import springc1.clonecoding.service.ProductService;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 public class ProductController {
 
-    private final ProductServiceImpl productService;
+    private final ProductService productService;
 
     //상품 등록
     @PostMapping("/api/product")
