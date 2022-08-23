@@ -58,6 +58,7 @@ public class Member extends Timestamped {
         this.nickname = requestDto.getNickname();
         this.location = requestDto.getLocation();
         this.password = password;
+        this.location = requestDto.getLocation();
     }
 
 }

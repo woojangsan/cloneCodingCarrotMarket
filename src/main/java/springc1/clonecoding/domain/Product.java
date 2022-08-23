@@ -21,10 +21,6 @@ public class Product {
 
 
     @Column(nullable = false)
-    private String nickname;
-
-
-    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -45,7 +41,6 @@ public class Product {
     private List<ImgProduct> imgProductList;
 
     public Product(ProductRequest request, Member member) {
-        this.nickname = member.getNickname();
         this.name = request.getName();
         this.price = request.getPrice();
         this.content = request.getContent();

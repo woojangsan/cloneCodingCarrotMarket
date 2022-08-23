@@ -1,19 +1,11 @@
-server:
-  servlet:
-    encoding:
-      force: 'true'
-      charset: utf-8
-      enabled: 'true'
+
 spring:
-  datasource:
-    username: miniProject
-    url: jdbc:mysql://database-1.czwa1zqemqal.ap-northeast-2.rds.amazonaws.com/miniProject?serverTimezone=Asia/Seoul
-    password: Dnr:4fkdgo!
-  jackson:
-    serialization:
-      FAIL_ON_EMPTY_BEANS: 'false'
-  jpa:
-    hibernate:
-      ddl-auto: create
-jwt:
-  secret: 4oCYc3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LWhhbmdoYWUtYXNzaWdubWVudC1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3Qtc2VjcmV0LWtleeKAmQo=
+  profiles:
+    active: prod
+
+---
+
+spring:
+  profiles:
+    active: local
+
