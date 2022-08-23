@@ -19,11 +19,12 @@ public class TokenProvider {
 
   private static final String BEARER_PREFIX = "Bearer ";
   private final Key key;
-  private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;            // 30분
+  private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 3;            // 3일
+//  private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;            // 30분
 //  private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 5;            // 5초
 
 
-  public TokenProvider(@Value("${JWT_SECRET_KEY}") String secretKey) {
+  public TokenProvider(@Value("${jwt.secret}") String secretKey) {
 
     byte[] keyBytes = Decoders.BASE64.decode(secretKey);
     this.key = Keys.hmacShaKeyFor(keyBytes);
