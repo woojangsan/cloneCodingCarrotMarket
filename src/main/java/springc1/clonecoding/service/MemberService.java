@@ -72,7 +72,7 @@ public class MemberService {
 
 
     public void tokenToHeaders(TokenDto tokenDto, HttpServletResponse response) {
-        response.addHeader("Access-Token", "Bearer " + tokenDto.getAccessToken());
+        response.addHeader("Access_Token", "Bearer " + tokenDto.getAccessToken());
     }
 
     @Transactional(readOnly = true)
