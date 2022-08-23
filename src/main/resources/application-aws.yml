@@ -1,12 +1,12 @@
 cloud:
   aws:
     credentials:
-      access-key: ${AKIAX5SW4JHJU7WOGX4W}
-      secret-key: ${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}
+      access-key: ${}
+      secret-key: ${}
     region:
       static: ${ap-northeast-2}
     s3:
-      bucket: ${clonecodingproductimgiam}
+      bucket: ${}
     stack:
       auto: false
 
