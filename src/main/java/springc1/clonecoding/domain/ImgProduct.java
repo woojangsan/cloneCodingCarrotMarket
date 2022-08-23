@@ -26,19 +26,8 @@ public class ImgProduct {
     private Product product;
 
 
-    public ImgProduct(Product product, String imgUrl) {
-        this.imgUrl = imgUrl;
+    public ImgProduct(Product product, ImgProduct imgUrl) {
         this.product = product;
+        this.imgUrl = imgUrl.getImgUrl();
     }
-
-    public ImgProduct(ImgProduct imgProduct) {
-        this.id = imgProduct.getId();
-        this.imgUrl = imgProduct.getImgUrl();
-        this.product = imgProduct.getProduct();
-
-        //JsonIgnore로 product는 안뜨게했고 imgUrl을 수정하면 수정한 값으로 가져와야 하는데 거기까진 일단 모르겠음
-        //그래도 이미지url 리스트로 가져오게는 성공
-    }
-
-
 }

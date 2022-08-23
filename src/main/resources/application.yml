@@ -1,3 +1,4 @@
+
 spring:
   profiles:
     active: prod
@@ -7,3 +8,4 @@ spring:
 spring:
   profiles:
     active: local
+

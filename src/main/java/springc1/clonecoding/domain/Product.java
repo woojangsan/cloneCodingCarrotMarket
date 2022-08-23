@@ -3,7 +3,6 @@ package springc1.clonecoding.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import springc1.clonecoding.controller.request.ProductRequest;
-import springc1.clonecoding.controller.response.ProductResponse;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +18,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     @Column(nullable = false)
     private String name;
@@ -44,7 +44,7 @@ public class Product {
         this.name = request.getName();
         this.price = request.getPrice();
         this.content = request.getContent();
-        this.location = request.getLocation();
+        this.location = member.getLocation();
         this.member = member;
     }
 
@@ -53,6 +53,6 @@ public class Product {
         this.name = request.getName();
         this.price = request.getPrice();
         this.content = request.getContent();
-        this.location = request.getLocation();
+        this.location = member.getLocation();
     }
 }

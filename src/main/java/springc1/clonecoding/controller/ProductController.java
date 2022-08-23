@@ -32,7 +32,6 @@ public class ProductController {
        return productService.updateProduct(request, userDetails , productId);
     }
 
-
     //상품 삭제
     @Transactional
     @DeleteMapping("/api/product/{productId}")

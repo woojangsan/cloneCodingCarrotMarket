@@ -23,7 +23,7 @@ public class AllProductsResponse {
         this.id = product.getId();
         this.name = product.getName();
         this.price = product.getPrice();
-        this.location = product.getLocation();
+        this.location = product.getMember().getLocation();
         this.imgProductList = product.getImgProductList();
     }
 
@@ -32,7 +32,7 @@ public class AllProductsResponse {
         this.id = product.getId();
         this.name = product.getName();
         this.price = product.getPrice();
-        this.location = product.getLocation();
+        this.location = product.getMember().getLocation();
         this.imgProductList = imgProductList1;
 
     }

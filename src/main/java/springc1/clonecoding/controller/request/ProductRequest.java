@@ -2,6 +2,7 @@ package springc1.clonecoding.controller.request;
 
 
 import lombok.Getter;
+import springc1.clonecoding.domain.ImgProduct;
 
 import java.util.List;
 
@@ -12,9 +13,7 @@ public class ProductRequest {
 
     private Long price;
 
-    private List<String> imgProductList;
+    private List<ImgProduct> imgProductList;
 
     private String content;
-
-    private String location;
 }

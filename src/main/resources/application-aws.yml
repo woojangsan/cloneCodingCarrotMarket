@@ -1,0 +1,17 @@
+cloud:
+  aws:
+    credentials:
+      access-key: ${AKIAX5SW4JHJU7WOGX4W}
+      secret-key: ${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}
+    region:
+      static: ${ap-northeast-2}
+    s3:
+      bucket: ${clonecodingproductimgiam}
+    stack:
+      auto: false
+
+  spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
