@@ -32,8 +32,8 @@ public class ProductService {
         //상품 저장하기
         productRepository.save(product);
         //이미지 가져와서 저장하기
-        List<String> imgProductList = request.getImgProductList();
-        for (String imgUrl : imgProductList){
+        List<ImgProduct> imgProductList = request.getImgProductList();
+        for (ImgProduct imgUrl : imgProductList){
             ImgProduct imgProduct = new ImgProduct(product, imgUrl);
             imgProductRepository.save(imgProduct);
         }
@@ -59,9 +59,9 @@ public class ProductService {
         productRepository.save(product);
         //상품 저장
         imgProductRepository.deleteAll(imgProductList);
-        List<String> imgProducts = request.getImgProductList();
-        for (String imgUrl : imgProducts){
-            ImgProduct imgProduct = new ImgProduct(product, imgUrl);
+        List<ImgProduct> imgProducts = request.getImgProductList();
+        for (ImgProduct imgUrl : imgProducts){
+            ImgProduct imgProduct = new ImgProduct(product,imgUrl);
             imgProductRepository.save(imgProduct);
         }
 
